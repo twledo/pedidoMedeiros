@@ -1,4 +1,4 @@
-package dev.medeiros.sitePedidos.controller;
+package dev.medeiros.sitePedidos.controller.admin;
 
 import dev.medeiros.sitePedidos.model.Order;
 import dev.medeiros.sitePedidos.service.interfaces.OrderService;

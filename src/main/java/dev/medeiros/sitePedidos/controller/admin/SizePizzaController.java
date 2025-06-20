@@ -1,4 +1,4 @@
-package dev.medeiros.sitePedidos.controller;
+package dev.medeiros.sitePedidos.controller.admin;
 
 import dev.medeiros.sitePedidos.model.SizePizza;
 import dev.medeiros.sitePedidos.service.interfaces.SizePizzaService;
@@ -28,31 +28,6 @@ public class SizePizzaController {
     @PostMapping
     public ResponseEntity<SizePizza> createSize(@RequestBody SizePizza sizePizza) {
         return ResponseEntity.ok(sizePizzaService.save(sizePizza));
-    }
-
-    /**
-     * Lista todos os tamanhos de pizza cadastrados.
-     *
-     * @return lista de {@link SizePizza}
-     */
-    @GetMapping
-    public List<SizePizza> getAllSizes() {
-        return sizePizzaService.findAll();
-    }
-
-    /**
-     * Recupera um tamanho de pizza com base no ID informado.
-     *
-     * @param id identificador do tamanho
-     * @return {@link ResponseEntity} com o tamanho ou 404 se não encontrado
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<SizePizza> getSizeById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(sizePizzaService.findById(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     /**

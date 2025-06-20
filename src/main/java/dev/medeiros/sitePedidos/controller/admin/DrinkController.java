@@ -1,4 +1,4 @@
-package dev.medeiros.sitePedidos.controller;
+package dev.medeiros.sitePedidos.controller.admin;
 
 import dev.medeiros.sitePedidos.model.Drink;
 import dev.medeiros.sitePedidos.repository.DrinkRepository;
@@ -28,29 +28,6 @@ public class DrinkController {
     @PostMapping
     public Drink createDrink(@RequestBody Drink drink) {
         return drinkRepository.save(drink);
-    }
-
-    /**
-     * Lista todas as bebidas disponíveis.
-     *
-     * @return lista de objetos {@link Drink}
-     */
-    @GetMapping
-    public List<Drink> getAllDrinks() {
-        return drinkRepository.findAll();
-    }
-
-    /**
-     * Retorna os dados de uma bebida específica pelo ID.
-     *
-     * @param id identificador da bebida
-     * @return {@link ResponseEntity} com a bebida encontrada ou 404 se não existir
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<Drink> getDrinkById(@PathVariable Long id) {
-        return drinkRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
     }
 
     /**

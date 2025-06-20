@@ -1,4 +1,4 @@
-package dev.medeiros.sitePedidos.controller;
+package dev.medeiros.sitePedidos.controller.admin;
 
 import dev.medeiros.sitePedidos.model.Flavor;
 import dev.medeiros.sitePedidos.service.interfaces.FlavorService;
@@ -28,31 +28,6 @@ public class FlavorController {
     @PostMapping
     public ResponseEntity<Flavor> createFlavor(@RequestBody Flavor flavor) {
         return ResponseEntity.ok(flavorService.save(flavor));
-    }
-
-    /**
-     * Lista todos os sabores de pizza disponíveis.
-     *
-     * @return lista de {@link Flavor}
-     */
-    @GetMapping
-    public List<Flavor> getAllFlavors() {
-        return flavorService.findAll();
-    }
-
-    /**
-     * Retorna um sabor de pizza com base no ID.
-     *
-     * @param id identificador do sabor
-     * @return {@link ResponseEntity} contendo o sabor encontrado ou 404 se não existir
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<Flavor> getFlavorById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(flavorService.findById(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     /**

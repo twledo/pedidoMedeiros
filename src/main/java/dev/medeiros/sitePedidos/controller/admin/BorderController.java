@@ -1,12 +1,10 @@
-package dev.medeiros.sitePedidos.controller;
+package dev.medeiros.sitePedidos.controller.admin;
 
 import dev.medeiros.sitePedidos.model.Border;
 import dev.medeiros.sitePedidos.service.interfaces.BorderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Controlador REST para gerenciar as bordas das pizzas.
