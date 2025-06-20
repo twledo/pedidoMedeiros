@@ -1,5 +1,6 @@
 package dev.medeiros.sitePedidos.controller.endpointPublic;
 
+import dev.medeiros.sitePedidos.model.Flavor;
 import dev.medeiros.sitePedidos.model.SizePizza;
 import dev.medeiros.sitePedidos.service.interfaces.SizePizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +30,18 @@ public class SizePizzaControllerPublic {
         return ResponseEntity.ok(sizePizzaService.findAll());
     }
 
-    /**
-     * Retorna um tamanho específico de pizza pelo ID para visualização pública.
-     *
-     * @param id identificador do tamanho
-     * @return {@link ResponseEntity} com o tamanho encontrado ou 404 se não existir
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<SizePizza> getById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(sizePizzaService.findById(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    /**
+//     * Retorna um tamanho específico de pizza pelo ID para visualização pública.
+//     *
+//     * @param id identificador do tamanho
+//     * @return {@link ResponseEntity} com o tamanho encontrado ou 404 se não existir
+//     */
+//    @GetMapping("/{id}")
+//    public ResponseEntity<SizePizza> getById(@PathVariable Long id) {
+//        try {
+//            return ResponseEntity.ok(sizePizzaService.findById(id));
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 }

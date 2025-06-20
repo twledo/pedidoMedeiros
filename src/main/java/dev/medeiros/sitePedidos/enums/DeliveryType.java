@@ -1,6 +1,9 @@
 package dev.medeiros.sitePedidos.enums;
 
+/**
+ * Enum que representa as entregas.
+ */
 public enum DeliveryType {
-    DELIVERY, PICKUP
+    ENTREGA, RETIRADA
 }
 

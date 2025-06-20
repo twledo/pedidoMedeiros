@@ -80,4 +80,8 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private DeliveryType deliveryType;
 
+    /**
+     * Pega o número da pessoa para enviar mensagens sobre o pedido
+     */
+    private String numberPhone;
 }

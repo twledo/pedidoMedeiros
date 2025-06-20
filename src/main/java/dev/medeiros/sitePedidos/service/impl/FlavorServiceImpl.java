@@ -1,5 +1,6 @@
 package dev.medeiros.sitePedidos.service.impl;
 
+import dev.medeiros.sitePedidos.enums.TypeFlavors;
 import dev.medeiros.sitePedidos.model.Flavor;
 import dev.medeiros.sitePedidos.repository.FlavorRepository;
 import dev.medeiros.sitePedidos.service.interfaces.FlavorService;
@@ -58,5 +59,17 @@ public class FlavorServiceImpl implements FlavorService {
     @Override
     public void deleteById(Long id) {
         flavorRepository.deleteById(id);
+    }
+
+    /**
+     * Retorna todos os sabores cujo tipo corresponde ao valor informado,
+     * ignorando diferenças de maiúsculas/minúsculas.
+     *
+     * @param type tipo do sabor (ex: "doce", "salgado")
+     * @return lista de {@link Flavor} que correspondem ao tipo informado
+     */
+    @Override
+    public List<Flavor> findByType(TypeFlavors type) {
+        return flavorRepository.findByType(type);
     }
 }

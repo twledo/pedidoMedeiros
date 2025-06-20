@@ -29,18 +29,18 @@ public class DrinkControllerPublic {
         return ResponseEntity.ok(drinkService.findAll());
     }
 
-    /**
-     * Retorna uma bebida específica pelo ID para visualização pública.
-     *
-     * @param id identificador da bebida
-     * @return {@link ResponseEntity} com a bebida ou 404 se não encontrada
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<Drink> getById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(drinkService.findById(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    /**
+//     * Retorna uma bebida específica pelo ID para visualização pública.
+//     *
+//     * @param id identificador da bebida
+//     * @return {@link ResponseEntity} com a bebida ou 404 se não encontrada
+//     */
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Drink> getById(@PathVariable Long id) {
+//        try {
+//            return ResponseEntity.ok(drinkService.findById(id));
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 }

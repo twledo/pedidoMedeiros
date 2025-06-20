@@ -1,5 +1,6 @@
 package dev.medeiros.sitePedidos.service.interfaces;
 
+import dev.medeiros.sitePedidos.enums.TypeFlavors;
 import dev.medeiros.sitePedidos.model.Flavor;
 import java.util.List;
 
@@ -43,4 +44,14 @@ public interface FlavorService {
      * @param id identificador do sabor
      */
     void deleteById(Long id);
+
+    /**
+     * Retorna todos os sabores cujo tipo corresponda ao valor informado,
+     * ignorando diferenças de caixa (maiúsculas/minúsculas).
+     *
+     * @param type tipo do sabor (ex: "doce", "salgado")
+     * @return lista de {@link Flavor} do tipo especificado
+     */
+    List<Flavor> findByType(TypeFlavors type);
+
 }

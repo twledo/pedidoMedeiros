@@ -1,5 +1,6 @@
 package dev.medeiros.sitePedidos.model;
 
+import dev.medeiros.sitePedidos.enums.TypeFlavors;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,4 +25,10 @@ public class Flavor {
      * Nome do sabor da pizza (ex: Calabresa, Quatro Queijos).
      */
     private String name;
+
+    /**
+     * Tipo de sabor da pizza para filtro, ex: salgado ou doce
+     */
+    @Enumerated(EnumType.STRING)
+    private TypeFlavors type;
 }

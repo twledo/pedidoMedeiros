@@ -29,18 +29,18 @@ public class BorderControllerPublic {
         return ResponseEntity.ok(borderService.findAll());
     }
 
-    /**
-     * Retorna uma borda específica pelo ID para visualização pública.
-     *
-     * @param id identificador da borda
-     * @return {@link ResponseEntity} com a borda ou 404 se não encontrada
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<Border> getById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(borderService.findById(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    /**
+//     * Retorna uma borda específica pelo ID para visualização pública.
+//     *
+//     * @param id identificador da borda
+//     * @return {@link ResponseEntity} com a borda ou 404 se não encontrada
+//     */
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Border> getById(@PathVariable Long id) {
+//        try {
+//            return ResponseEntity.ok(borderService.findById(id));
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 }
