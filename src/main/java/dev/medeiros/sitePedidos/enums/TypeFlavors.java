@@ -5,7 +5,7 @@ package dev.medeiros.sitePedidos.enums;
  */
 public enum TypeFlavors {
     DOCE,
-    SALGADA;
+    SALGADO;
 
     /**
      * Converte uma string para o enum {@link TypeFlavors}, ignorando caixa e espaços.
