@@ -23,6 +23,11 @@ class DrinkServiceImplTest {
     @InjectMocks
     private DrinkServiceImpl drinkService;
 
+    /**
+     * Testa se o metodo save retorna a bebida salva corretamente.
+     *
+     * @see DrinkServiceImpl#save(Drink)
+     */
     @Test
     void saveReturnsSavedDrink() {
         Drink drink = new Drink();
@@ -30,6 +35,11 @@ class DrinkServiceImplTest {
         assertEquals(drink, drinkService.save(drink));
     }
 
+    /**
+     * Testa se o metodo findAll retorna a lista de bebidas corretamente.
+     *
+     * @see DrinkServiceImpl#findAll()
+     */
     @Test
     void findAllReturnsListOfDrinks() {
         List<Drink> drinks = List.of(new Drink(), new Drink());
@@ -37,6 +47,11 @@ class DrinkServiceImplTest {
         assertEquals(drinks, drinkService.findAll());
     }
 
+    /**
+     * Testa se o metodo findById retorna a bebida quando ela existe.
+     *
+     * @see DrinkServiceImpl#findById(Long)
+     */
     @Test
     void findByIdReturnsDrinkWhenExists() {
         Drink drink = new Drink();
@@ -45,6 +60,11 @@ class DrinkServiceImplTest {
         assertEquals(drink, drinkService.findById(1L));
     }
 
+    /**
+     * Testa se o metodo findById lança exceção quando a bebida não é encontrada.
+     *
+     * @see DrinkServiceImpl#findById(Long)
+     */
     @Test
     void findByIdThrowsExceptionWhenNotFound() {
         when(drinkRepository.findById(99L)).thenReturn(Optional.empty());
@@ -52,6 +72,11 @@ class DrinkServiceImplTest {
         assertTrue(ex.getMessage().contains("Bebida não encontrada com ID: 99"));
     }
 
+    /**
+     * Testa se o metodo edit atualiza a bebida corretamente quando ela existe.
+     *
+     * @see DrinkServiceImpl#edit(Long, Drink)
+     */
     @Test
     void editUpdatesDrinkWhenExists() {
         Drink existing = new Drink();
@@ -71,6 +96,11 @@ class DrinkServiceImplTest {
         assertEquals(20L, result.getPrice());
     }
 
+    /**
+     * Testa se o metodo deleteById remove a bebida corretamente.
+     *
+     * @see DrinkServiceImpl#deleteById(Long)
+     */
     @Test
     void deleteByIdRemovesDrink() {
         doNothing().when(drinkRepository).deleteById(1L);

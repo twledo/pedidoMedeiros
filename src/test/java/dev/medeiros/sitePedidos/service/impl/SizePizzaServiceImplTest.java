@@ -25,6 +25,11 @@ class SizePizzaServiceImplTest {
     @InjectMocks
     private SizePizzaServiceImpl sizePizzaService;
 
+    /**
+     * Testa se o metodo save retorna a pizza salva corretamente.
+     *
+     * @see SizePizzaServiceImpl#save(SizePizza)
+     */
     @Test
     void saveReturnsSavedPizza() {
         SizePizza pizza = new SizePizza();
@@ -32,6 +37,11 @@ class SizePizzaServiceImplTest {
         assertEquals(pizza, sizePizzaService.save(pizza));
     }
 
+    /**
+     * Testa se o metodo findAll retorna a lista de pizzas corretamente.
+     *
+     * @see SizePizzaServiceImpl#findAll()
+     */
     @Test
     void findAllReturnsListOfPizzas() {
         List<SizePizza> list = Arrays.asList(new SizePizza(), new SizePizza());
@@ -39,6 +49,11 @@ class SizePizzaServiceImplTest {
         assertEquals(list, sizePizzaService.findAll());
     }
 
+    /**
+     * Testa se o metodo findById retorna a pizza quando ela existe.
+     *
+     * @see SizePizzaServiceImpl#findById(Long)
+     */
     @Test
     void findByIdReturnsPizzaWhenExists() {
         SizePizza pizza = new SizePizza();
@@ -47,6 +62,11 @@ class SizePizzaServiceImplTest {
         assertEquals(pizza, sizePizzaService.findById(1L));
     }
 
+    /**
+     * Testa se o metodo edit atualiza a pizza corretamente quando ela existe.
+     *
+     * @see SizePizzaServiceImpl#edit(Long, SizePizza)
+     */
     @Test
     void editUpdatesPizzaWhenExists() {
         SizePizza pizza = new SizePizza();
@@ -69,6 +89,11 @@ class SizePizzaServiceImplTest {
         Assertions.assertEquals("nova desc", result.getDescription());
     }
 
+    /**
+     * Testa se o metodo deleteById remove a pizza corretamente.
+     *
+     * @see SizePizzaServiceImpl#deleteById(Long)
+     */
     @Test
     void deleteByIdRemovesPizza() {
         doNothing().when(sizePizzaRepository).deleteById(1L);

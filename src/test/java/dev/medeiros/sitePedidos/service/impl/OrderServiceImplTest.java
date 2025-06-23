@@ -25,6 +25,11 @@ class OrderServiceImplTest {
     @InjectMocks
     private OrderServiceImpl orderService;
 
+    /**
+     * Testa se o metodo save calcula o preço total e salva o pedido.
+     *
+     * @see OrderServiceImpl#save(Order)
+     */
     @Test
     void saveCalculatesTotalPriceAndSavesOrder() {
         Order order = new Order();
@@ -44,6 +49,11 @@ class OrderServiceImplTest {
         verify(orderRepository).save(order);
     }
 
+    /**
+     * Testa se o metodo findAll retorna a lista de pedidos corretamente.
+     *
+     * @see OrderServiceImpl#findAll()
+     */
     @Test
     void findAllReturnsListOfOrders() {
         List<Order> orders = Arrays.asList(new Order(), new Order());
@@ -55,6 +65,11 @@ class OrderServiceImplTest {
         assertEquals(orders, result);
     }
 
+    /**
+     * Testa se o metodo findById retorna o pedido quando ele existe.
+     *
+     * @see OrderServiceImpl#findById(Long)
+     */
     @Test
     void findByIdReturnsOrderWhenExists() {
         Order order = new Order();
@@ -66,6 +81,11 @@ class OrderServiceImplTest {
         assertEquals(order, result);
     }
 
+    /**
+     * Testa se o metodo findById lança exceção quando o pedido não é encontrado.
+     *
+     * @see OrderServiceImpl#findById(Long)
+     */
     @Test
     void findByIdThrowsExceptionWhenNotFound() {
         when(orderRepository.findById(99L)).thenReturn(Optional.empty());
@@ -74,6 +94,11 @@ class OrderServiceImplTest {
         assertTrue(ex.getMessage().contains("Pedido não encontrado com ID: 99"));
     }
 
+    /**
+     * Testa se o metodo deleteById remove o pedido quando ele existe.
+     *
+     * @see OrderServiceImpl#deleteById(Long)
+     */
     @Test
     void deleteByIdDeletesWhenExists() {
         when(orderRepository.existsById(1L)).thenReturn(true);
@@ -84,6 +109,11 @@ class OrderServiceImplTest {
         verify(orderRepository).deleteById(1L);
     }
 
+    /**
+     * Testa se o metodo deleteById lança exceção quando o pedido não existe.
+     *
+     * @see OrderServiceImpl#deleteById(Long)
+     */
     @Test
     void deleteByIdThrowsExceptionWhenNotExists() {
         when(orderRepository.existsById(2L)).thenReturn(false);

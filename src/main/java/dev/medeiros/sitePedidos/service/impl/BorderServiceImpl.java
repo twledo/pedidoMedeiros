@@ -6,6 +6,9 @@ import dev.medeiros.sitePedidos.service.interfaces.BorderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 /**
@@ -13,6 +16,8 @@ import java.util.List;
  */
 @Service
 public class BorderServiceImpl implements BorderService {
+
+    private static final Logger logger = LoggerFactory.getLogger(BorderServiceImpl.class);
 
     @Autowired
     private BorderRepository borderRepository;
@@ -22,6 +27,7 @@ public class BorderServiceImpl implements BorderService {
      */
     @Override
     public Border save(Border border) {
+        logger.info("Salvando borda: {}", border);
         return borderRepository.save(border);
     }
 
@@ -30,6 +36,7 @@ public class BorderServiceImpl implements BorderService {
      */
     @Override
     public List<Border> findAll() {
+        logger.info("Buscando todas as bordas");
         return borderRepository.findAll();
     }
 
@@ -38,8 +45,12 @@ public class BorderServiceImpl implements BorderService {
      */
     @Override
     public Border findById(Long id) {
+        logger.info("Buscando borda por ID: {}", id);
         return borderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Borda não encontrada com ID: " + id));
+                .orElseThrow(() -> {
+                    logger.warn("Borda não encontrada com ID: {}", id);
+                    return new RuntimeException("Borda não encontrada com ID: " + id);
+                });
     }
 
     /**
@@ -47,6 +58,7 @@ public class BorderServiceImpl implements BorderService {
      */
     @Override
     public Border edit(Long id, Border border) {
+        logger.info("Editando borda ID: {}", id);
         Border existing = findById(id);
         existing.setName(border.getName());
         existing.setPrice(border.getPrice());
@@ -58,6 +70,7 @@ public class BorderServiceImpl implements BorderService {
      */
     @Override
     public void deleteById(Long id) {
+        logger.info("Deletando borda ID: {}", id);
         borderRepository.deleteById(id);
     }
 }

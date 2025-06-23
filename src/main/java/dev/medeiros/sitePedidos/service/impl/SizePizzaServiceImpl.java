@@ -6,6 +6,9 @@ import dev.medeiros.sitePedidos.service.interfaces.SizePizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 /**
@@ -13,6 +16,8 @@ import java.util.List;
  */
 @Service
 public class SizePizzaServiceImpl implements SizePizzaService {
+
+    private static final Logger logger = LoggerFactory.getLogger(SizePizzaServiceImpl.class);
 
     @Autowired
     private SizePizzaRepository sizePizzaRepository;
@@ -22,6 +27,7 @@ public class SizePizzaServiceImpl implements SizePizzaService {
      */
     @Override
     public SizePizza save(SizePizza sizePizza) {
+        logger.info("Salvando tamanho de pizza: {}", sizePizza);
         return sizePizzaRepository.save(sizePizza);
     }
 
@@ -30,6 +36,7 @@ public class SizePizzaServiceImpl implements SizePizzaService {
      */
     @Override
     public List<SizePizza> findAll() {
+        logger.info("Buscando todos os tamanhos de pizza");
         return sizePizzaRepository.findAll();
     }
 
@@ -38,8 +45,12 @@ public class SizePizzaServiceImpl implements SizePizzaService {
      */
     @Override
     public SizePizza findById(Long id) {
+        logger.info("Buscando tamanho de pizza por ID: {}", id);
         return sizePizzaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tamanho não encontrado com ID: " + id));
+                .orElseThrow(() -> {
+                    logger.warn("Tamanho não encontrado com ID: {}", id);
+                    return new RuntimeException("Tamanho não encontrado com ID: " + id);
+                });
     }
 
     /**
@@ -47,6 +58,7 @@ public class SizePizzaServiceImpl implements SizePizzaService {
      */
     @Override
     public SizePizza edit(Long id, SizePizza sizePizza) {
+        logger.info("Editando tamanho de pizza ID: {}", id);
         SizePizza existing = findById(id);
         existing.setName(sizePizza.getName());
         existing.setPrice(sizePizza.getPrice());
@@ -59,6 +71,7 @@ public class SizePizzaServiceImpl implements SizePizzaService {
      */
     @Override
     public void deleteById(Long id) {
+        logger.info("Deletando tamanho de pizza ID: {}", id);
         sizePizzaRepository.deleteById(id);
     }
 }

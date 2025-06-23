@@ -24,6 +24,11 @@ class FlavorServiceImplTest {
     @InjectMocks
     private FlavorServiceImpl flavorService;
 
+    /**
+     * Testa se o metodo save retorna o sabor salvo corretamente.
+     *
+     * @see FlavorServiceImpl#save(Flavor)
+     */
     @Test
     void saveReturnsSavedFlavor() {
         Flavor flavor = new Flavor();
@@ -31,6 +36,11 @@ class FlavorServiceImplTest {
         assertEquals(flavor, flavorService.save(flavor));
     }
 
+    /**
+     * Testa se o metodo findAll retorna a lista de sabores corretamente.
+     *
+     * @see FlavorServiceImpl#findAll()
+     */
     @Test
     void findAllReturnsListOfFlavors() {
         List<Flavor> flavors = List.of(new Flavor(), new Flavor());
@@ -38,6 +48,11 @@ class FlavorServiceImplTest {
         assertEquals(flavors, flavorService.findAll());
     }
 
+    /**
+     * Testa se o metodo findById retorna o sabor quando ele existe.
+     *
+     * @see FlavorServiceImpl#findById(Long)
+     */
     @Test
     void findByIdReturnsFlavorWhenExists() {
         Flavor flavor = new Flavor();
@@ -46,6 +61,11 @@ class FlavorServiceImplTest {
         assertEquals(flavor, flavorService.findById(1L));
     }
 
+    /**
+     * Testa se o metodo findById lan��a exceção quando o sabor não é encontrado.
+     *
+     * @see FlavorServiceImpl#findById(Long)
+     */
     @Test
     void findByIdThrowsExceptionWhenNotFound() {
         when(flavorRepository.findById(99L)).thenReturn(Optional.empty());
@@ -53,6 +73,11 @@ class FlavorServiceImplTest {
         assertTrue(ex.getMessage().contains("Sabor não encontrado com ID: 99"));
     }
 
+    /**
+     * Testa se o metodo edit atualiza o sabor corretamente quando ele existe.
+     *
+     * @see FlavorServiceImpl#edit(Long, Flavor)
+     */
     @Test
     void editUpdatesFlavorWhenExists() {
         Flavor existing = new Flavor();
@@ -69,6 +94,11 @@ class FlavorServiceImplTest {
         assertEquals("Novo", result.getName());
     }
 
+    /**
+     * Testa se o metodo deleteById remove o sabor corretamente.
+     *
+     * @see FlavorServiceImpl#deleteById(Long)
+     */
     @Test
     void deleteByIdRemovesFlavor() {
         doNothing().when(flavorRepository).deleteById(1L);
@@ -76,6 +106,11 @@ class FlavorServiceImplTest {
         verify(flavorRepository).deleteById(1L);
     }
 
+    /**
+     * Testa se o metodo findByType retorna os sabores do tipo informado.
+     *
+     * @see FlavorServiceImpl#findByType(TypeFlavors)
+     */
     @Test
     void findByTypeReturnsFlavorsOfGivenType() {
         List<Flavor> flavors = List.of(new Flavor(), new Flavor());

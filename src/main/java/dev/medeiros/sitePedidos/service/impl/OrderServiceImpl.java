@@ -5,6 +5,8 @@ import dev.medeiros.sitePedidos.repository.OrderRepository;
 import dev.medeiros.sitePedidos.service.interfaces.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     private final OrderRepository orderRepository;
 
@@ -27,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order save(Order order) {
+        logger.info("Salvando pedido: {}", order);
         long sizePrice = order.getSizePizza() != null ? order.getSizePizza().getPrice() : 0L;
         long deliveryPrice = order.getDeliveryPrice() != null ? order.getDeliveryPrice() : 0L;
 
@@ -41,6 +46,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public List<Order> findAll() {
+        logger.info("Buscando todos os pedidos");
         return orderRepository.findAll();
     }
 
@@ -53,8 +59,12 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order findById(Long id) {
+        logger.info("Buscando pedido por ID: {}", id);
         return orderRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Pedido não encontrado com ID: " + id));
+                .orElseThrow(() -> {
+                    logger.warn("Pedido não encontrado com ID: {}", id);
+                    return new IllegalArgumentException("Pedido não encontrado com ID: " + id);
+                });
     }
 
     /**
@@ -65,7 +75,9 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public void deleteById(Long id) {
+        logger.info("Deletando pedido ID: {}", id);
         if (!orderRepository.existsById(id)) {
+            logger.warn("Tentativa de deletar pedido inexistente ID: {}", id);
             throw new IllegalArgumentException("Não existe pedido com ID: " + id);
         }
         orderRepository.deleteById(id);

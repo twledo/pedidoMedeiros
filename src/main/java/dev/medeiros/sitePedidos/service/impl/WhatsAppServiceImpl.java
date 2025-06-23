@@ -3,6 +3,8 @@ package dev.medeiros.sitePedidos.service.impl;
 import dev.medeiros.sitePedidos.model.Order;
 import dev.medeiros.sitePedidos.service.interfaces.WhatsAppService;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementação do serviço de envio de notificações via WhatsApp.
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WhatsAppServiceImpl implements WhatsAppService {
+
+    private static final Logger logger = LoggerFactory.getLogger(WhatsAppServiceImpl.class);
 
     /**
      * Envia uma mensagem de confirmação de pedido via WhatsApp para o número informado no pedido.
@@ -24,6 +28,6 @@ public class WhatsAppServiceImpl implements WhatsAppService {
         // Exemplo fictício: chamada à API externa aqui
         // whatsappApiClient.sendMessage(phoneNumber, message);
 
-        System.out.println("Simulação: Enviando mensagem para " + phoneNumber + ": " + message);
+        logger.info("Simulação: Enviando mensagem para {}: {}", phoneNumber, message);
     }
 }

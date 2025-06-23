@@ -6,6 +6,9 @@ import dev.medeiros.sitePedidos.service.interfaces.DrinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 /**
@@ -13,6 +16,8 @@ import java.util.List;
  */
 @Service
 public class DrinkServiceImpl implements DrinkService {
+
+    private static final Logger logger = LoggerFactory.getLogger(DrinkServiceImpl.class);
 
     @Autowired
     private DrinkRepository drinkRepository;
@@ -22,6 +27,7 @@ public class DrinkServiceImpl implements DrinkService {
      */
     @Override
     public Drink save(Drink drink) {
+        logger.info("Salvando bebida: {}", drink);
         return drinkRepository.save(drink);
     }
 
@@ -30,6 +36,7 @@ public class DrinkServiceImpl implements DrinkService {
      */
     @Override
     public List<Drink> findAll() {
+        logger.info("Buscando todas as bebidas");
         return drinkRepository.findAll();
     }
 
@@ -38,8 +45,12 @@ public class DrinkServiceImpl implements DrinkService {
      */
     @Override
     public Drink findById(Long id) {
+        logger.info("Buscando bebida por ID: {}", id);
         return drinkRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Bebida não encontrada com ID: " + id));
+                .orElseThrow(() -> {
+                    logger.warn("Bebida não encontrada com ID: {}", id);
+                    return new RuntimeException("Bebida não encontrada com ID: " + id);
+                });
     }
 
     /**
@@ -47,6 +58,7 @@ public class DrinkServiceImpl implements DrinkService {
      */
     @Override
     public Drink edit(Long id, Drink drink) {
+        logger.info("Editando bebida ID: {}", id);
         Drink existing = findById(id);
         existing.setName(drink.getName());
         existing.setPrice(drink.getPrice());
@@ -58,6 +70,7 @@ public class DrinkServiceImpl implements DrinkService {
      */
     @Override
     public void deleteById(Long id) {
+        logger.info("Deletando bebida ID: {}", id);
         drinkRepository.deleteById(id);
     }
 }
