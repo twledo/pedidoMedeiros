@@ -13,6 +13,7 @@ import java.util.List;
  * Controlador REST público para consulta dos sabores de pizza disponíveis.
  * Acesso liberado para clientes (sem autenticação).
  */
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/public/flavors")
 public class FlavorControllerPublic {

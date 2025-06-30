@@ -61,4 +61,35 @@ public class FlavorController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    /**
+     * Retorna todos os sabores de pizza cadastrados.
+     *
+     * @return {@link ResponseEntity} contendo a lista de {@link Flavor} ou erro interno
+     */
+    @GetMapping
+    public ResponseEntity<List<Flavor>> getAllFlavors() {
+        try {
+            List<Flavor> flavors = flavorService.findAll();
+            return ResponseEntity.ok(flavors);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    /**
+     * Retorna um sabor de pizza específico pelo ID.
+     *
+     * @param id identificador do sabor de pizza
+     * @return {@link ResponseEntity} contendo o {@link Flavor} ou 404 se não encontrado
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Flavor> getFlavorById(@PathVariable Long id) {
+        try {
+            Flavor flavor = flavorService.findById(id);
+            return ResponseEntity.ok(flavor);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -87,4 +87,15 @@ public class OrderController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    //faça get com list, com try catch
+    @GetMapping("/list")
+    public ResponseEntity<List<Order>> getOrdersList() {
+        try {
+            List<Order> orders = orderService.findAll();
+            return ResponseEntity.ok(orders);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
 }

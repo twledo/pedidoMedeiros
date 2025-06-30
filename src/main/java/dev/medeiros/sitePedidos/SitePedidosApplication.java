@@ -13,6 +13,6 @@ public class SitePedidosApplication {
 	public static void main(String[] args) {
 		logger.info("Iniciando a aplicação SitePedidos...");
 		SpringApplication.run(SitePedidosApplication.class, args);
-		logger.info("Aplicação SitePedidos iniciada com sucesso.");
+		logger.info("✅✅ Aplicação SitePedidos iniciada com sucesso.");
 	}
 }

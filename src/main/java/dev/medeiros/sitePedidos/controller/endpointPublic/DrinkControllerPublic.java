@@ -12,6 +12,7 @@ import java.util.List;
  * Controlador REST público para consulta das bebidas disponíveis.
  * Acesso liberado para clientes (sem autenticação).
  */
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/public/drinks")
 public class DrinkControllerPublic {
@@ -28,19 +29,4 @@ public class DrinkControllerPublic {
     public ResponseEntity<List<Drink>> getAll() {
         return ResponseEntity.ok(drinkService.findAll());
     }
-
-//    /**
-//     * Retorna uma bebida específica pelo ID para visualização pública.
-//     *
-//     * @param id identificador da bebida
-//     * @return {@link ResponseEntity} com a bebida ou 404 se não encontrada
-//     */
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Drink> getById(@PathVariable Long id) {
-//        try {
-//            return ResponseEntity.ok(drinkService.findById(id));
-//        } catch (RuntimeException e) {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
 }

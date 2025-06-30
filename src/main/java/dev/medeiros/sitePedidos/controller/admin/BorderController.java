@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Controlador REST para gerenciar as bordas das pizzas.
  */
@@ -49,5 +51,30 @@ public class BorderController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         borderService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Border>> findAll() {
+        try {
+            return ResponseEntity.ok(borderService.findAll());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    /**
+     * Retorna uma borda específica pelo ID.
+     *
+     * @param id identificador da borda
+     * @return {@link ResponseEntity} contendo a {@link Border} ou 404 se não encontrada
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Border> getBorderById(@PathVariable Long id) {
+        try {
+            Border border = borderService.findById(id);
+            return ResponseEntity.ok(border);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

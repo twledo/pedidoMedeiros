@@ -27,6 +27,11 @@ public class Flavor {
     private String name;
 
     /**
+     * Descrição detalhada do sabor da pizza.
+     */
+    private String description;
+
+    /**
      * Tipo de sabor da pizza para filtro, ex: salgado ou doce
      */
     @Enumerated(EnumType.STRING)

@@ -63,4 +63,36 @@ public class DrinkController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    /**
+     * Obtém uma lista de todas as bebidas disponíveis.
+     *
+     * @return lista de bebidas
+     */
+    @GetMapping
+    public ResponseEntity<List<Drink>> getAllDrinks() {
+        try {
+            List<Drink> drinks = drinkRepository.findAll();
+            return ResponseEntity.ok(drinks);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    /**
+     * Retorna uma bebida específica pelo ID.
+     *
+     * @param id identificador da bebida
+     * @return {@link ResponseEntity} contendo a {@link Drink} ou 404 se não encontrada
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Drink> getDrinkById(@PathVariable Long id) {
+        try {
+            Drink drink = drinkRepository.findById(id)
+                    .orElseThrow(IllegalArgumentException::new);
+            return ResponseEntity.ok(drink);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

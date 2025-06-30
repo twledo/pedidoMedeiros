@@ -12,6 +12,7 @@ import java.util.List;
  * Controlador REST público para consulta das bordas disponíveis das pizzas.
  * Acesso liberado para clientes (sem autenticação).
  */
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/public/borders")
 public class BorderControllerPublic {
@@ -28,19 +29,4 @@ public class BorderControllerPublic {
     public ResponseEntity<List<Border>> getAll() {
         return ResponseEntity.ok(borderService.findAll());
     }
-
-//    /**
-//     * Retorna uma borda específica pelo ID para visualização pública.
-//     *
-//     * @param id identificador da borda
-//     * @return {@link ResponseEntity} com a borda ou 404 se não encontrada
-//     */
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Border> getById(@PathVariable Long id) {
-//        try {
-//            return ResponseEntity.ok(borderService.findById(id));
-//        } catch (RuntimeException e) {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
 }

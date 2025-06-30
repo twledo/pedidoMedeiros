@@ -63,6 +63,8 @@ public class SizePizzaServiceImpl implements SizePizzaService {
         existing.setName(sizePizza.getName());
         existing.setPrice(sizePizza.getPrice());
         existing.setDescription(sizePizza.getDescription());
+        existing.setPieces(sizePizza.getPieces());
+        existing.setFlavorsQuantity(sizePizza.getFlavorsQuantity());
         return sizePizzaRepository.save(existing);
     }
 

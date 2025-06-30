@@ -34,4 +34,14 @@ public class SizePizza {
      * Valor do tamanho de cada pizza em centavos, 8000 -> R$ 80
      */
     private Long price;
+
+    /**
+     * Quantidade de fatias que a pizza possui, ex: 8 fatias
+     */
+    private Integer pieces;
+
+    /**
+     * Quantidade de sabores que a pizza comporta, ex: 1 sabor
+     */
+    private Integer flavorsQuantity;
 }

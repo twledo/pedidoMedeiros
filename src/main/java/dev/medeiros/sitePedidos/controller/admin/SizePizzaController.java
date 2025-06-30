@@ -12,6 +12,7 @@ import java.util.List;
  * Controlador REST responsável por gerenciar os tamanhos de pizza disponíveis.
  * Fornece endpoints para operações de criação, consulta, edição e exclusão.
  */
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/admin/sizes")
 public class SizePizzaController {
@@ -57,6 +58,31 @@ public class SizePizzaController {
         try {
             sizePizzaService.deleteById(id);
             return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
+     * Retorna todos os tamanhos de pizza cadastrados.
+     *
+     * @return {@link ResponseEntity} contendo a lista de {@link SizePizza} ou erro interno
+     */
+    @GetMapping
+    public ResponseEntity<List<SizePizza>> getAllSizes() {
+        try {
+            List<SizePizza> sizes = sizePizzaService.findAll();
+            return ResponseEntity.ok(sizes);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SizePizza> getSizeById(@PathVariable Long id) {
+        try {
+            SizePizza sizePizza = sizePizzaService.findById(id);
+            return ResponseEntity.ok(sizePizza);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }

@@ -50,6 +50,7 @@ public class FlavorServiceImpl implements FlavorService {
     public Flavor edit(Long id, Flavor flavor) {
         Flavor existing = findById(id);
         existing.setName(flavor.getName());
+        existing.setDescription(flavor.getDescription());
         return flavorRepository.save(existing);
     }
 
