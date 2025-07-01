@@ -51,6 +51,7 @@ public class FlavorServiceImpl implements FlavorService {
         Flavor existing = findById(id);
         existing.setName(flavor.getName());
         existing.setDescription(flavor.getDescription());
+        existing.setType(flavor.getType());
         return flavorRepository.save(existing);
     }
 

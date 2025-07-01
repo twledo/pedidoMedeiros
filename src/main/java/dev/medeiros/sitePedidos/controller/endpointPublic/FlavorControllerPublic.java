@@ -47,13 +47,13 @@ public class FlavorControllerPublic {
     }
 
     /**
-     * Endpoint público para buscar sabores de pizza filtrados pelo tipo informado (ex: "doce", "salgada").
+     * Endpoint público para buscar sabores de pizza filtrados pelo tipo informado (ex: "doce", "salgado").
      *
      * O valor informado como parâmetro será convertido para um valor do enum {@link TypeFlavors},
      * ignorando letras maiúsculas/minúsculas e espaços. Caso o tipo seja inválido ou inexistente,
      * retorna HTTP 400 (Bad Request).
      *
-     * @param type tipo de sabor desejado ("doce" ou "salgada")
+     * @param type tipo de sabor desejado ("doce" ou "salgado")
      * @return {@link ResponseEntity} contendo a lista de sabores filtrados ou status 400 em caso de erro de conversão
      */
     @GetMapping("/filter")
